@@ -16,7 +16,7 @@ public class EmployeeRunner {
 	public static void main(String[] args)   {
 		
 		
-		Employee emp = new Employee("Raugh", "male", 150000);
+		Employee emp = new Employee("Amresh", "Male", 240000);
 		
 //		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 //		SessionFactory sessionFactory = cfg.buildSessionFactory();

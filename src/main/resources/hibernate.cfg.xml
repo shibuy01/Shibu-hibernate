@@ -13,7 +13,7 @@
 		<property name="connection.password">root</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
-		<mapping resource="employee.hbm.xml" />
+		<mapping class="com.Shibu.entity.Employee" />
 
 	</session-factory>
 
