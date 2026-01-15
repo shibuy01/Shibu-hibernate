@@ -12,7 +12,7 @@ public class EmployeeRunner {
 	public static void main(String[] args)   {
 		
 		
-		Employee emp = new Employee("RaoShaheb", "Male", 340000);
+		Employee emp = new Employee("Rahul", "Male", 240000,"India");
 		
 		
 		Session session = EmpConfiguration.getSessionFactory().openSession();

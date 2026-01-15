@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Employee {
@@ -14,16 +15,20 @@ public class Employee {
 	private String name,gender;
 	private int salary;
 	
+	//does'not save in database
+	@Transient
+	private String Country;
 	
 	public Employee() {
 		super();
 	}
 
 
-	public Employee(String name, String gender, int salary) {
+	public Employee(String name, String gender, int salary,String Country) {
 		this.name = name;
 		this.gender = gender;
 		this.salary = salary;
+		this.Country = Country;
 	}
 
 
@@ -65,11 +70,19 @@ public class Employee {
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
+	
+	public String getCountry() {
+		return Country;
+	}
+	
+	public void SetCountry(String Country) {
+		this.Country = Country;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + ", country="+Country+"]";
 	}
 
 }
