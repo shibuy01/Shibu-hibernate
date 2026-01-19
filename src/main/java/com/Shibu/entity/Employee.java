@@ -1,34 +1,40 @@
 package com.Shibu.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Transient;
 
-@Entity
+
+@NamedQuery(name = "updateAnEmployee" , query = "update empp set name=:n where id=:i")
+@NamedQuery(name = "deleteEmployeeById" , query = "delete from empp where id=:i")
+
+@Entity(name="empp")
 public class Employee {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name,gender;
+	@Column(name = "e_Name")
+	private String name;
+	private String gender;
 	private int salary;
-	
-	//does'not save in database
 	@Transient
-	private String Country;
+	private String country;
+	
 	
 	public Employee() {
 		super();
 	}
 
 
-	public Employee(String name, String gender, int salary,String Country) {
+	public Employee(String name, String gender, int salary,String country) {
 		this.name = name;
 		this.gender = gender;
 		this.salary = salary;
-		this.Country = Country;
+		this.country=country;
 	}
 
 
@@ -70,19 +76,11 @@ public class Employee {
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
-	
-	public String getCountry() {
-		return Country;
-	}
-	
-	public void SetCountry(String Country) {
-		this.Country = Country;
-	}
 
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + ", country="+Country+"]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + "]";
 	}
 
 }
