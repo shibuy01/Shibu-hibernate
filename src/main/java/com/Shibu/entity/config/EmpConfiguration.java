@@ -9,6 +9,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 
+import com.Shibu.entity.Address;
+
 public class EmpConfiguration {
 
 	public static SessionFactory getSessionFactory() {
@@ -19,7 +21,7 @@ public class EmpConfiguration {
 		properties.put(Environment.JAKARTA_JDBC_URL, "jdbc:mysql://localhost:3306/hibernate");
 		properties.put(Environment.JAKARTA_JDBC_USER, "root");
 		properties.put(Environment.JAKARTA_JDBC_PASSWORD, "root");
-		properties.put(Environment.HBM2DDL_AUTO, "update");
+		properties.put(Environment.HBM2DDL_AUTO, "create");
 		properties.put(Environment.SHOW_SQL, "true");
 //		properties.put(Environment.FORMAT_SQL, "true");
 
@@ -28,7 +30,7 @@ public class EmpConfiguration {
 //		SessionFactory sessionFactory = metaData.buildSessionFactory();
 
 		return new MetadataSources(new StandardServiceRegistryBuilder().applySettings(properties).build())
-				.addAnnotatedClass(com.Shibu.entity.Employee.class).getMetadataBuilder().build().buildSessionFactory();
+				.addAnnotatedClasses(com.Shibu.entity.Employee.class,Address.class).getMetadataBuilder().build().buildSessionFactory();
 
 	}
 
