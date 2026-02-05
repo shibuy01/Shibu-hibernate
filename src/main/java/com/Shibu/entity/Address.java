@@ -1,80 +1,78 @@
 package com.Shibu.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Address {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int hNo;
-	private String city, state;
-	
-	@OneToOne
-	private Employee employee;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String city;
+    private String state;
+
+    @ManyToMany(mappedBy = "addresses")
+    private List<Employee> employees = new ArrayList<>();
+    
+    
+
 	public Address() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Address( String city, String state) {
+	public Address(int id, String city, String state, List<Employee> employees) {
 		super();
-		this.hNo = hNo;
+		this.id = id;
 		this.city = city;
 		this.state = state;
+		this.employees = employees;
 	}
 
-
-	public int gethNo() {
-		return hNo;
+	public int getId() {
+		return id;
 	}
 
-
-	public void sethNo(int hNo) {
-		this.hNo = hNo;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 
 	public String getCity() {
 		return city;
 	}
 
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 
 	public String getState() {
 		return state;
 	}
 
-
 	public void setState(String state) {
 		this.state = state;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
-
 
 	@Override
 	public String toString() {
-		return "Address [hNo=" + hNo + ", city=" + city + ", state=" + state + "]";
+		return "Address [id=" + id + ", city=" + city + ", state=" + state + ", employees=" + employees + "]";
 	}
-	
-	
-	
+
+ 
 }
