@@ -1,5 +1,7 @@
 package com.Shibu.main;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,32 +14,37 @@ public class EmployeeRunner {
 	public static void main(String[] args) {
 		
 		Employee emp1 = new Employee();
-		emp1.setName("vinay");
-		emp1.setGender("M");
-		emp1.setSalary(40000);
+		emp1.setName("Shibu");
+		emp1.setGender("Male");
+		emp1.setSalary(50000);
 		
 		
 		Address addresh1 = new Address();
 		addresh1.setCity("Siwan");
 		addresh1.setState("Bihar");
-		addresh1.setEmployee(emp1);
+		Address addresh2 = new Address();
+		addresh2.setCity("Noida");
+		addresh2.setState("UP");
+		Address addresh3 = new Address();
+		addresh3.setCity("Meerut");
+		addresh3.setState("UP");
 		
-		emp1.setAddress(addresh1);
-
+		ArrayList<Address> listOfAddresh = new ArrayList<>();
+		listOfAddresh.add(addresh1);
+		listOfAddresh.add(addresh2);
+		listOfAddresh.add(addresh3);
+		
+		emp1.setAddresses(listOfAddresh);
+		
 		Session session = EmpConfiguration.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		session.persist(addresh1);
+		
 		session.persist(emp1);
 		tx.commit();
 		
-		
-		Employee employee = session.find(Employee.class, 1);
-		System.out.println(employee);
-		System.out.println(employee.getAddress());
-		
-		Address address = session.find(Address.class, 1);
-		System.out.println(address);
-		System.out.println(address.getEmployee());
+//		Address address = session.find(Address.class, 1);
+//		System.out.println(address);
+//		System.out.println(address.getEmployee());
 		
 		session.close();
 	}
